@@ -20,11 +20,19 @@ If you're using the trial version you'll need to add your license key. To do so,
 
     chart.licenseKey=@"your license key";
 
-If you're using the trial version you'll need to add your license key. To do so, open up ViewController.m and add the following line after the grid is initialised:
+If you're using the trial version you'll need to add your license key. To do so, open up AppDelegate.m, import `<ShinobiGrids/ShinobiDataGrid.h>`, and set the license key inside `application:didFinishLaunchingWithOptions:` as follows:
 
-    grid.licenseKey=@"your license key";
+    #import <ShinobiGrids/ShinobiDataGrid.h>
 
-If you’re using the trial version you’ll need to add your license key. To do so, open up AppDelegate.m, import <ShinobiEssentials/ShinobiEssentials.h>, and set the license key inside application:didFinishLaunchingWithOptions: as follows:
+    @implementation AppDelegate
+
+    - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+    {
+        [ShinobiDataGrids setLicenseKey:@"your license key"];
+        …
+    }
+
+If you’re using the trial version you’ll need to add your license key. To do so, open up AppDelegate.m, import `<ShinobiEssentials/ShinobiEssentials.h>`, and set the license key inside `application:didFinishLaunchingWithOptions:` as follows:
 
     #import <ShinobiEssentials/ShinobiEssentials.h>
 
@@ -36,7 +44,7 @@ If you’re using the trial version you’ll need to add your license key. To do
         …
     }
 
-If you’re using the trial version you’ll need to add your license key. To do so, open up AppDelegate.m, import <ShinobiGauges/ShinobiGauges.h>, and set the license key inside application:didFinishLaunchingWithOptions: as follows:
+If you’re using the trial version you’ll need to add your license key. To do so, open up AppDelegate.m, import `<ShinobiGauges/ShinobiGauges.h>`, and set the license key inside `application:didFinishLaunchingWithOptions:` as follows:
 
     #import <ShinobiGauges/ShinobiGauges.h>
 
