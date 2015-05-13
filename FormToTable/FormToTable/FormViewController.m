@@ -29,8 +29,6 @@
 @property (strong, nonatomic) ShinobiForm *form;
 @property (strong, nonatomic) SFormView *formView;
 @property (strong, nonatomic) NSArray *avatars;
-@property (strong, nonatomic) UIScrollView *scrollView;
-@property (strong, nonatomic) SFormScrollViewManager *scrollManager;
 
 @end
 
@@ -39,9 +37,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-  // Create an array of images to use as avatars, making sure they always render in
-  // original mode (because they will end up inside a UIControl which would otherwise use
-  // them as template images)
+  // Create an array of small images to use to pick an avatar
   NSMutableArray *avatarImages = [NSMutableArray new];
   for (Avatar *avatar in [Avatar allAvatars]) {
     [avatarImages addObject:avatar.smallImage];
@@ -97,7 +93,7 @@
   self.preferredContentSize = self.formView.frame.size;
 }
 
-#pragma mark - ShinobiFormDelegate
+#pragma mark - SFormDelegate methods
 
 -(void)formDidSubmit:(ShinobiForm *)form {
   // Form was submitted with valid inputs so create a person, dismiss the popover, and add
@@ -135,10 +131,13 @@
       [field3.value length] == 0 && field4.value == nil) {
     return nil;
   } else {
+    // Create a person based on the field values
+    NSArray *avatars = [Avatar allAvatars];
+    NSInteger index = [field4.value integerValue];
     return [[Person alloc] initWithForename:field1.value
                                     surname:field2.value
                                emailAddress:field3.value
-                                     avatar:[Avatar allAvatars][[field4.value integerValue]]];
+                                     avatar:avatars[index]];
   }
 }
 

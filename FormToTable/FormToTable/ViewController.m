@@ -62,8 +62,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  // Retrieve or create a cell, using the subtitle cell style to display an icon and a subtitle
   static NSString *tableCellIdentifier = @"PersonCell";
-  
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
   
   if (cell == nil) {
@@ -71,6 +71,7 @@
                                   reuseIdentifier:tableCellIdentifier];
   }
   
+  // Populate the cell from the relevant Person object
   Person *person = self.people[indexPath.row];
   cell.textLabel.text = person.fullName;
   cell.detailTextLabel.text = person.emailAddress;

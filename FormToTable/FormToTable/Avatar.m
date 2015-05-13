@@ -47,6 +47,8 @@ static NSArray *avatars;
 - (id)initWithName:(NSString *)name {
   self = [super init];
   if (self) {
+    // Add the images, making sure they always render in original mode (because they will
+    // end up inside a UIControl which would otherwise use them as template images)
     _smallImage = [[UIImage imageNamed:name]
                    imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     _largeImage = [[UIImage imageNamed:[NSString stringWithFormat:@"%@Big", name]]
