@@ -14,7 +14,7 @@ If you've used the installer to install **shinobiforms**, the project should jus
 
 If you're using the trial version you'll need to add your license key. To do so, open up **ViewController.m** and add the following line to the top of `viewDidLoad:`:
 
-    [ShinobiForms setLicenseKey:@""];
+    [ShinobiForms setLicenseKey:@"<your-license-key>"];
 
 Contributing
 ------------
