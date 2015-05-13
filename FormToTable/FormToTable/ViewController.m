@@ -38,6 +38,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
+  // Create an initial array of Person objects
   self.people = [@[[[Person alloc] initWithForename:@"John"
                                            surname:@"Smith"
                                       emailAddress:@"john.smith@shinobicontrols.com"
@@ -48,28 +49,26 @@
                                              avatar:[Avatar allAvatars][3]]] mutableCopy];
 }
 
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
-}
-
 - (void)addPerson:(Person *)person {
+  // Add the person to our array, and reload the table
   [self.people addObject:person];
   [self.tableView reloadData];
 }
 
+#pragma mark - UITableViewDataSource methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   return self.people.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  static NSString *simpleTableIdentifier = @"SimpleTableCell";
+  static NSString *tableCellIdentifier = @"PersonCell";
   
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
   
   if (cell == nil) {
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:simpleTableIdentifier];
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
+                                  reuseIdentifier:tableCellIdentifier];
   }
   
   Person *person = self.people[indexPath.row];
@@ -78,6 +77,8 @@
   cell.imageView.image = person.avatar.smallImage;
   return cell;
 }
+
+#pragma mark - UITableViewDelegate methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   Person *person = self.people[indexPath.row];
