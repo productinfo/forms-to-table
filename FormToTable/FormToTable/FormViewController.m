@@ -23,6 +23,7 @@
 #import "Person.h"
 #import "Avatar.h"
 #import "ViewController.h"
+#import "FixedWidthFormFieldLayout.h"
 
 @interface FormViewController()
 
@@ -37,12 +38,6 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-  // Create an array of small images to use to pick an avatar
-  NSMutableArray *avatarImages = [NSMutableArray new];
-  for (Avatar *avatar in [Avatar allAvatars]) {
-    [avatarImages addObject:avatar.smallImage];
-  }
-  
   // Create the form field models
   SFormTextField *forenameField = [[SFormTextField alloc] initWithTitle:@"Forename"];
   forenameField.required = YES;
@@ -52,6 +47,12 @@
   
   SFormTextField *emailField = [[SFormEmailField alloc] initWithTitle:@"Email"];
   emailField.required = YES;
+  
+  // Create an array of small images to use to pick an avatar
+  NSMutableArray *avatarImages = [NSMutableArray new];
+  for (Avatar *avatar in [Avatar allAvatars]) {
+    [avatarImages addObject:avatar.smallImage];
+  }
   
   SFormChoiceField *avatarField = [[SFormChoiceField alloc] initWithTitle:@"Avatar"
                                                                   choices:avatarImages];
@@ -72,30 +73,27 @@
   self.formView = [[SFormFormViewBuilder new] buildViewFromModel:self.form];
   self.formView.submitButton = [SFormSubmitButton new];
   
-  // Fix the widths of the inputs so they're all the same as the last (the choice field)
-  NSArray *fieldViews = ((SFormSectionView *)self.formView.sectionViews[0]).fieldViews;
-  CGFloat width = ((SFormFieldView *) [fieldViews lastObject]).inputElement.frame.size.width;
-  
-  for (SFormFieldView *fieldView in fieldViews) {
-    // Set the width on both the input element and the field view itself
-    CGRect inputFrame = fieldView.inputElement.frame;
-    inputFrame.size.width = width;
-    fieldView.inputElement.frame = inputFrame;
+    // Create a fixed width layout
+    FixedWidthFormFieldLayout *layout = [[FixedWidthFormFieldLayout alloc] init];
     
-    CGRect fieldFrame = fieldView.frame;
-    fieldFrame.size.width = width;
-    fieldView.frame = fieldFrame;
-  }
+    // Set the width of the layout to match that of our last field (the choice field)
+    NSArray *fieldViews = ((SFormSectionView *)self.formView.sectionViews[0]).fieldViews;
+    layout.width = ((SFormFieldView *) [fieldViews lastObject]).inputElement.frame.size.width;
+    
+    // Apply the layout to every field
+    for (SFormFieldView *fieldView in fieldViews) {
+      fieldView.layout = layout;
+    }
+    
+    [self.formView sizeToFit];
+    [self.view addSubview:self.formView];
   
-  [self.formView sizeToFit];
-  [self.view addSubview:self.formView];
-  
-  self.preferredContentSize = self.formView.frame.size;
+    self.preferredContentSize = self.formView.frame.size;
 }
 
 #pragma mark - SFormDelegate methods
 
--(void)formDidSubmit:(ShinobiForm *)form {
+- (void)formDidSubmit:(ShinobiForm *)form {
   // Form was submitted with valid inputs so create a person, dismiss the popover, and add
   // the Person to the parent VC
   Person *person = [self getPersonFromForm:form];
@@ -122,21 +120,21 @@
 // returns nil.
 - (Person *)getPersonFromForm:(ShinobiForm *)form {
   SFormSection *section = form.sections[0];
-  SFormField *field1 = section.fields[0];
-  SFormField *field2 = section.fields[1];
-  SFormField *field3 = section.fields[2];
-  SFormField *field4 = section.fields[3];
+  SFormField *forenameField = section.fields[0];
+  SFormField *surnameField = section.fields[1];
+  SFormField *emailField = section.fields[2];
+  SFormField *avatarField = section.fields[3];
   
-  if ([field1.value length] == 0 && [field2.value length] == 0 &&
-      [field3.value length] == 0 && field4.value == nil) {
+  if ([forenameField.value length] == 0 && [surnameField.value length] == 0 &&
+      [emailField.value length] == 0 && avatarField.value == nil) {
     return nil;
   } else {
     // Create a person based on the field values
     NSArray *avatars = [Avatar allAvatars];
-    NSInteger index = [field4.value integerValue];
-    return [[Person alloc] initWithForename:field1.value
-                                    surname:field2.value
-                               emailAddress:field3.value
+    NSInteger index = [avatarField.value integerValue];
+    return [[Person alloc] initWithForename:forenameField.value
+                                    surname:surnameField.value
+                               emailAddress:emailField.value
                                      avatar:avatars[index]];
   }
 }

@@ -18,6 +18,7 @@
 		6830F2E11B0229CE00229BFA /* ShinobiForms.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6830F2E01B0229CE00229BFA /* ShinobiForms.framework */; };
 		6830F2E31B022B4A00229BFA /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6830F2E21B022B4A00229BFA /* libxml2.2.dylib */; };
 		6830F2E71B035DE400229BFA /* Avatar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6830F2E61B035DE400229BFA /* Avatar.m */; };
+		6830F2EA1B038B4000229BFA /* FixedWidthFormFieldLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6830F2E91B038B4000229BFA /* FixedWidthFormFieldLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,8 @@
 		6830F2E21B022B4A00229BFA /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		6830F2E51B035DE400229BFA /* Avatar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Avatar.h; sourceTree = "<group>"; };
 		6830F2E61B035DE400229BFA /* Avatar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Avatar.m; sourceTree = "<group>"; };
+		6830F2E81B038B4000229BFA /* FixedWidthFormFieldLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FixedWidthFormFieldLayout.h; sourceTree = "<group>"; };
+		6830F2E91B038B4000229BFA /* FixedWidthFormFieldLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FixedWidthFormFieldLayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +86,8 @@
 				6830F2BC1B02156000229BFA /* ViewController.m */,
 				6830F2DD1B02286600229BFA /* FormViewController.h */,
 				6830F2DE1B02286600229BFA /* FormViewController.m */,
+				6830F2E81B038B4000229BFA /* FixedWidthFormFieldLayout.h */,
+				6830F2E91B038B4000229BFA /* FixedWidthFormFieldLayout.m */,
 				6830F2BE1B02156000229BFA /* Main.storyboard */,
 				6830F2C11B02156000229BFA /* Images.xcassets */,
 				6830F2C31B02156000229BFA /* LaunchScreen.xib */,
@@ -181,6 +186,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6830F2E71B035DE400229BFA /* Avatar.m in Sources */,
+				6830F2EA1B038B4000229BFA /* FixedWidthFormFieldLayout.m in Sources */,
 				6830F2BD1B02156000229BFA /* ViewController.m in Sources */,
 				6830F2BA1B02156000229BFA /* AppDelegate.m in Sources */,
 				6830F2DC1B021F1300229BFA /* Person.m in Sources */,
