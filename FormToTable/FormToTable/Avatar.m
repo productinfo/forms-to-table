@@ -33,15 +33,26 @@ static NSArray *avatars;
 @implementation Avatar
 
 + (NSArray *)allAvatars {
-  static dispatch_once_t pred;
-  static NSArray *avatars = nil;
-  dispatch_once(&pred, ^{
-    avatars = @[[[Avatar alloc] initWithName:@"Person1"],
-                [[Avatar alloc] initWithName:@"Person2"],
-                [[Avatar alloc] initWithName:@"Person3"],
-                [[Avatar alloc] initWithName:@"Person4"]];
-  });
-  return avatars;
+  return @[[Avatar person1],
+           [Avatar person2],
+           [Avatar person3],
+           [Avatar person4]];
+}
+
++ (Avatar *)person1 {
+  return [[Avatar alloc] initWithName:@"Person1"];
+}
+
++ (Avatar *)person2 {
+  return [[Avatar alloc] initWithName:@"Person2"];
+}
+
++ (Avatar *)person3 {
+  return [[Avatar alloc] initWithName:@"Person3"];
+}
+
++ (Avatar *)person4 {
+  return [[Avatar alloc] initWithName:@"Person4"];
 }
 
 - (id)initWithName:(NSString *)name {

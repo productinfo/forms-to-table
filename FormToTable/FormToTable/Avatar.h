@@ -27,5 +27,9 @@
 @property (readonly, strong, nonatomic) UIImage *largeImage;
 
 + (NSArray *)allAvatars;
++ (Avatar *)person1;
++ (Avatar *)person2;
++ (Avatar *)person3;
++ (Avatar *)person4;
 
 @end

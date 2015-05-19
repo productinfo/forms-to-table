@@ -22,6 +22,6 @@
 #import <UIKit/UIKit.h>
 #import <ShinobiForms/ShinobiForms.h>
 
-@interface FormViewController : UIViewController<SFormDelegate>
+@interface FormViewController : UIViewController
 
 @end

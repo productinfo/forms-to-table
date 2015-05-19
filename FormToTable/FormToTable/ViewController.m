@@ -42,11 +42,11 @@
   self.people = [@[[[Person alloc] initWithForename:@"John"
                                            surname:@"Smith"
                                       emailAddress:@"john.smith@shinobicontrols.com"
-                                             avatar:[Avatar allAvatars][1]],
+                                             avatar:[Avatar person2]],
                    [[Person alloc] initWithForename:@"Jane"
                                             surname:@"Brown"
                                        emailAddress:@"jane.brown@shinobicontrols.com"
-                                             avatar:[Avatar allAvatars][3]]] mutableCopy];
+                                             avatar:[Avatar person4]]] mutableCopy];
 }
 
 - (void)addPerson:(Person *)person {

@@ -25,11 +25,10 @@
 #import "ViewController.h"
 #import "FixedWidthFormFieldLayout.h"
 
-@interface FormViewController()
+@interface FormViewController()<SFormDelegate>
 
 @property (strong, nonatomic) ShinobiForm *form;
 @property (strong, nonatomic) SFormView *formView;
-@property (strong, nonatomic) NSArray *avatars;
 
 @end
 
@@ -49,11 +48,7 @@
   emailField.required = YES;
   
   // Create an array of small images to use to pick an avatar
-  NSMutableArray *avatarImages = [NSMutableArray new];
-  for (Avatar *avatar in [Avatar allAvatars]) {
-    [avatarImages addObject:avatar.smallImage];
-  }
-  
+  NSArray *avatarImages = [Avatar.allAvatars valueForKey:@"smallImage"];
   SFormChoiceField *avatarField = [[SFormChoiceField alloc] initWithTitle:@"Avatar"
                                                                   choices:avatarImages];
   avatarField.required = YES;
